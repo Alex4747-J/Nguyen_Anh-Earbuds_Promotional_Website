@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Gekk EarBuds</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- tab icon -->
+  <link rel="icon" type="image/x-icon" href="images/earbuds.png">
+  <!-- Font -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <h1 class="hidden">Gekk Overdrive EarBuds</h1>
+  <header class="head">
+    <div class="two-items md-two-third lg-two-third">
+      <div class="logo">
+        <img src="images/earbuds.png" alt="logo">
+      </div>
+
+      <div class="main-nav">
+        <div class="hamburger" role="button" tabindex="0" aria-expanded="false" aria-label="Open menu">
+            
+        </div>
+        <nav>
+          <h2 class="hidden">Main Navigation</h2>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Discover</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- <model-viewer> HTML element -->
+    <section id="model-3d" class="fullscreen">
+    <model-viewer id="model" src="model/1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1" >
+      <button class="Hotspot" slot="hotspot-1" data-position="0.038585632241228796m 1.1804761214753827m -1.204345205749985m" data-normal="-0.07157826838137057m -0.29287859705301034m -0.9534666637506447m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation" id="hotspot-1"></div>
+      </button><button class="Hotspot" slot="hotspot-2" data-position="-0.591031324222888m -0.729407611964654m 0.03630071654102718m" data-normal="0.027594592623187267m -0.31037044400295677m -0.9502150945693129m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation" id="hotspot-2"></div>
+      </button><button class="Hotspot" slot="hotspot-4" data-position="-0.4074084981158638m -1.1632033891316609m 0.8681968060478353m" data-normal="-0.1446932119753036m -0.9826584613948769m -0.11595784862320896m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation" id="hotspot-3"></div>
+      </button><button class="Hotspot" slot="hotspot-5" data-position="-0.6544349075672251m 0.7824594901898314m 1.557160862183133m" data-normal="-0.47806258350646635m 0.26010184618854976m 0.8389297919733398m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation" id="hotspot-4"></div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+     </model-viewer>  
+     </section>
+    </main>
+
+    <footer class="footer">
+    <div class="fullscreen">
+      <p>© 2025 Gekk Earbuds. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- link to greensock main library -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <!-- Loads <model-viewer> for browsers: -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <!-- Our JS folder last -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
