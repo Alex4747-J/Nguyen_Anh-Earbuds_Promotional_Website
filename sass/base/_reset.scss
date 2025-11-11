@@ -1,0 +1,22 @@
+@use '../abstracts';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: abstracts.$text-color;
+}
+body{
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: abstracts.$text-color;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-color: abstracts.$primary-color abstracts.$white;
+}
