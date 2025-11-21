@@ -1,0 +1,88 @@
+@use "../abstracts" as a;
+
+#xray {
+  position: relative;
+  aspect-ratio: 16/10;
+  background-image: url(../images/X-RAY_Normal.png);
+  background-size: cover;
+  border-radius: 15px;
+}
+
+#divisor{
+  position: absolute;
+  top: 0;
+  left:0;
+  aspect-ratio: 16/10;
+  background-image: url(../images/X-RAY.png);
+  background-size: cover;
+  width: 50%;
+  height: 100%;
+  border-radius: 15px;
+
+  &::after{
+    content:'';
+    position: absolute;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background-color: #fff;
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 20px);
+  height: 20px;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
+input[type=range]::-moz-range-track {
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #01ff38;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #01ff38;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+
+// // width: calc(100% + 20px) — extends the slider so the thumb doesn’t get totally cut off at the edges.
+// // left: -15px — re-centers the extended slider so it still visually aligns with the container.
+
+
+// // The track of the range input extends from left: -15px to width: calc(100% + 20px).
+
+// // The thumb (the white circle) has a width of 20px.
+
+// // By default, the thumb is centered on the edges of the track — so at the minimum position, half of it (10px) would hang outside the visible track area.
+// // If the input’s width were only 100%, the thumb would get clipped or appear to move off the edge visually.
