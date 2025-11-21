@@ -23,11 +23,11 @@
         <img src="images/earbuds.png" alt="logo">
       </div>
 
-      <div class="main-nav">
-        <div class="hamburger" role="button" tabindex="0" aria-expanded="false" aria-label="Open menu">
-            
-        </div>
+      <button id="hamburger">&#9776;</button>
+
+      <div class="main-nav overlay" id="menu">
         <nav>
+          <button id="close">&times;</button>
           <h2 class="hidden">Main Navigation</h2>
           <ul>
             <li><a href="#">Home</a></li>
@@ -43,14 +43,14 @@
   <main>
   <!-- <model-viewer> HTML element -->
     <section id="model-3d" class="fullscreen">
-    <model-viewer id="model" src="model/1.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1" >
-      <button class="Hotspot" slot="hotspot-1" data-position="0.038585632241228796m 1.1804761214753827m -1.204345205749985m" data-normal="-0.07157826838137057m -0.29287859705301034m -0.9534666637506447m" data-visibility-attribute="visible">
+    <model-viewer src="model/GEKK_Model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
+      <button class="Hotspot" slot="hotspot-1" data-position="-5.49273210640636m 4.569390430358118m -2.585422425832771m" data-normal="0.7262516183909619m -0.34462263619512484m -0.5948057039121527m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-1"></div>
-      </button><button class="Hotspot" slot="hotspot-2" data-position="-0.591031324222888m -0.729407611964654m 0.03630071654102718m" data-normal="0.027594592623187267m -0.31037044400295677m -0.9502150945693129m" data-visibility-attribute="visible">
+      </button><button class="Hotspot" slot="hotspot-2" data-position="-5.926860847273553m 4.02564372012619m -0.47662641875868994m" data-normal="0.16699501929994584m -0.8987714391539698m -0.40536719611990407m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-2"></div>
-      </button><button class="Hotspot" slot="hotspot-3" data-position="-0.4074084981158638m -1.1632033891316609m 0.8681968060478353m" data-normal="-0.1446932119753036m -0.9826584613948769m -0.11595784862320896m" data-visibility-attribute="visible">
+      </button><button class="Hotspot" slot="hotspot-3" data-position="-5.847874129169371m 4.912814524983405m 0.7311898161431281m" data-normal="0.20095185342347588m 0.35566835622685017m 0.9127531829495641m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-3"></div>
-      </button><button class="Hotspot" slot="hotspot-4" data-position="-0.6544349075672251m 0.7824594901898314m 1.557160862183133m" data-normal="-0.47806258350646635m 0.26010184618854976m 0.8389297919733398m" data-visibility-attribute="visible">
+      </button><button class="Hotspot" slot="hotspot-4" data-position="-2.8070574911244837m 3.1932151199840266m 0.40809117991560306m" data-normal="-0.3024633254349997m 0.09908704614357086m 0.9479966740729334m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-4"></div>
       </button>
       <div class="progress-bar hide" slot="progress-bar">
@@ -58,6 +58,26 @@
       </div>
      </model-viewer>  
      </section>
+
+     <div class="grid-con">
+        <div class="col-span-full">
+            <h2>GEKK Buds</h2>
+            <p>Welcome to Gekk, where audio innovation meets environmental stewardship. Sculpted from groundbreaking, sustainable materials, Gekk earbuds offer a guilt-free listening experience without sacrificing durability or style. We have reimagined personal audio to be as kind to the planet as it is pleasing to the ear, setting a new standard for eco-conscious technology.</p>
+
+            <p>Immerse yourself in sound or stay tuned to the world. Our Noise Cancelling Buds provide a comfortable, acoustic seal for pure focus and high-fidelity audio. Conversely, the revolutionary Open Speaker design blends your music naturally with your environment, ensuring you stay safe and present without missing a single beat.</p>
+
+            <p>Communication and control are seamless with Gekk. The Quaker Mic ensures crystal-clear, professional call quality by isolating your voice in any setting. Meanwhile, the Utility Back puts power at your fingertips, letting you customize taps and swipes to manage music and calls effortlessly, adapting the earbuds to your unique lifestyle.</p>
+        </div>
+        <div class="col-span-full">        
+                <div id="xray">
+                    <div id="divisor"></div>
+                    <input type="range" min="0" max="100" value="50" id="slider">
+                </div>    
+        </div>
+        </div>
+        <div class="col-span-full">
+            <canvas id="explode-view"></canvas> 
+        </div>
     </main>
 
     <footer class="footer">
@@ -68,6 +88,9 @@
 
   <!-- link to greensock main library -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <!-- Scroll trigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/ScrollTrigger.js"></script>
   <!-- Loads <model-viewer> for browsers: -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
   <!-- Our JS folder last -->
