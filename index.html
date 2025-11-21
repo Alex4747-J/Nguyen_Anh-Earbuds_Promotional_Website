@@ -8,11 +8,116 @@
   <!-- tab icon -->
   <link rel="icon" type="image/x-icon" href="images/earbuds.png">
   <!-- Font -->
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/grid.css">
   <link rel="stylesheet" href="css/main.css">
+  
+  <style>
+    /* Mobile-only hamburger menu styles */
+    #hamburger {
+      display: block;
+      font-size: 32px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    
+    /* Hide hamburger on tablet and desktop */
+    @media screen and (min-width: 768px) {
+      #hamburger {
+        display: none !important;
+      }
+      
+      /* Show regular nav on tablet/desktop */
+      .overlay {
+        display: block !important;
+        position: static !important;
+        background: transparent !important;
+        width: auto !important;
+        height: auto !important;
+      }
+      
+      .overlay.open {
+        display: block !important;
+      }
+      
+      #close {
+        display: none !important;
+      }
+      
+      .overlay nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 1.5rem;
+        background: transparent;
+      }
+      
+      .overlay li {
+        margin: 0 !important;
+      }
+      
+      .overlay a {
+        font-size: 0.95rem !important;
+        color: white;
+      }
+    }
+    
+    /* Mobile overlay styles */
+    @media screen and (max-width: 767px) {
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        color: white;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      
+      .overlay.open {
+        display: flex !important;
+      }
+      
+      #close {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 32px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+      
+      .overlay ul {
+        list-style-type: none;
+        text-align: center;
+        padding: 0;
+      }
+      
+      .overlay li {
+        margin: 20px 0;
+      }
+      
+      .overlay a {
+        color: white;
+        font-size: 32px;
+        text-decoration: none;
+      }
+      
+      .overlay a:hover {
+        color: #60c383;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -23,11 +128,14 @@
         <img src="images/earbuds.png" alt="logo">
       </div>
 
-      <button id="hamburger">&#9776;</button>
+      <!-- Hamburger button - only visible on mobile -->
+      <button id="hamburger" aria-label="Open menu">&#9776;</button>
 
+      <!-- Navigation menu -->
       <div class="main-nav overlay" id="menu">
         <nav>
-          <button id="close">&times;</button>
+          <!-- Close button - only visible on mobile overlay -->
+          <button id="close" aria-label="Close menu">&times;</button>
           <h2 class="hidden">Main Navigation</h2>
           <ul>
             <li><a href="#">Home</a></li>
@@ -41,46 +149,49 @@
   </header>
 
   <main>
-  <!-- <model-viewer> HTML element -->
+    <!-- <model-viewer> HTML element -->
     <section id="model-3d" class="fullscreen">
-    <model-viewer src="model/GEKK_Model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
-      <button class="Hotspot" slot="hotspot-1" data-position="-5.49273210640636m 4.569390430358118m -2.585422425832771m" data-normal="0.7262516183909619m -0.34462263619512484m -0.5948057039121527m" data-visibility-attribute="visible">
+      <model-viewer src="model/GEKK_Model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
+        <button class="Hotspot" slot="hotspot-1" data-position="-5.49273210640636m 4.569390430358118m -2.585422425832771m" data-normal="0.7262516183909619m -0.34462263619512484m -0.5948057039121527m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-1"></div>
-      </button><button class="Hotspot" slot="hotspot-2" data-position="-5.926860847273553m 4.02564372012619m -0.47662641875868994m" data-normal="0.16699501929994584m -0.8987714391539698m -0.40536719611990407m" data-visibility-attribute="visible">
+        </button>
+        <button class="Hotspot" slot="hotspot-2" data-position="-5.926860847273553m 4.02564372012619m -0.47662641875868994m" data-normal="0.16699501929994584m -0.8987714391539698m -0.40536719611990407m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-2"></div>
-      </button><button class="Hotspot" slot="hotspot-3" data-position="-5.847874129169371m 4.912814524983405m 0.7311898161431281m" data-normal="0.20095185342347588m 0.35566835622685017m 0.9127531829495641m" data-visibility-attribute="visible">
+        </button>
+        <button class="Hotspot" slot="hotspot-3" data-position="-5.847874129169371m 4.912814524983405m 0.7311898161431281m" data-normal="0.20095185342347588m 0.35566835622685017m 0.9127531829495641m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-3"></div>
-      </button><button class="Hotspot" slot="hotspot-4" data-position="-2.8070574911244837m 3.1932151199840266m 0.40809117991560306m" data-normal="-0.3024633254349997m 0.09908704614357086m 0.9479966740729334m" data-visibility-attribute="visible">
+        </button>
+        <button class="Hotspot" slot="hotspot-4" data-position="-2.8070574911244837m 3.1932151199840266m 0.40809117991560306m" data-normal="-0.3024633254349997m 0.09908704614357086m 0.9479966740729334m" data-visibility-attribute="visible">
           <div class="HotspotAnnotation" id="hotspot-4"></div>
-      </button>
-      <div class="progress-bar hide" slot="progress-bar">
+        </button>
+        <div class="progress-bar hide" slot="progress-bar">
           <div class="update-bar"></div>
+        </div>
+      </model-viewer>
+    </section>
+
+    <div class="grid-con">
+      <div class="col-span-full">
+        <h2>GEKK Buds</h2>
+        <p>Welcome to Gekk, where audio innovation meets environmental stewardship. Sculpted from groundbreaking, sustainable materials, Gekk earbuds offer a guilt-free listening experience without sacrificing durability or style. We have reimagined personal audio to be as kind to the planet as it is pleasing to the ear, setting a new standard for eco-conscious technology.</p>
+
+        <p>Immerse yourself in sound or stay tuned to the world. Our Noise Cancelling Buds provide a comfortable, acoustic seal for pure focus and high-fidelity audio. Conversely, the revolutionary Open Speaker design blends your music naturally with your environment, ensuring you stay safe and present without missing a single beat.</p>
+
+        <p>Communication and control are seamless with Gekk. The Quaker Mic ensures crystal-clear, professional call quality by isolating your voice in any setting. Meanwhile, the Utility Back puts power at your fingertips, letting you customize taps and swipes to manage music and calls effortlessly, adapting the earbuds to your unique lifestyle.</p>
       </div>
-     </model-viewer>  
-     </section>
-
-     <div class="grid-con">
-        <div class="col-span-full">
-            <h2>GEKK Buds</h2>
-            <p>Welcome to Gekk, where audio innovation meets environmental stewardship. Sculpted from groundbreaking, sustainable materials, Gekk earbuds offer a guilt-free listening experience without sacrificing durability or style. We have reimagined personal audio to be as kind to the planet as it is pleasing to the ear, setting a new standard for eco-conscious technology.</p>
-
-            <p>Immerse yourself in sound or stay tuned to the world. Our Noise Cancelling Buds provide a comfortable, acoustic seal for pure focus and high-fidelity audio. Conversely, the revolutionary Open Speaker design blends your music naturally with your environment, ensuring you stay safe and present without missing a single beat.</p>
-
-            <p>Communication and control are seamless with Gekk. The Quaker Mic ensures crystal-clear, professional call quality by isolating your voice in any setting. Meanwhile, the Utility Back puts power at your fingertips, letting you customize taps and swipes to manage music and calls effortlessly, adapting the earbuds to your unique lifestyle.</p>
+      <div class="col-span-full">
+        <div id="xray">
+          <div id="divisor"></div>
+          <input type="range" min="0" max="100" value="50" id="slider">
         </div>
-        <div class="col-span-full">        
-                <div id="xray">
-                    <div id="divisor"></div>
-                    <input type="range" min="0" max="100" value="50" id="slider">
-                </div>    
-        </div>
-        </div>
-        <div class="col-span-full">
-            <canvas id="explode-view"></canvas> 
-        </div>
-    </main>
+      </div>
+    </div>
+    <div class="col-span-full">
+      <canvas id="explode-view"></canvas>
+    </div>
+  </main>
 
-    <footer class="footer">
+  <footer class="footer">
     <div class="fullscreen">
       <p>© 2025 Gekk Earbuds. All rights reserved.</p>
     </div>
