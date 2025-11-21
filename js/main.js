@@ -1,5 +1,7 @@
 (() => {
     // console.log("JS file is connected")
+
+    //Hotspot Annotation
     const hotspots = document.querySelectorAll(".Hotspot");
 
     const infoBoxes = [
@@ -28,36 +30,54 @@
             alt: "Utility Back Image"
         }
     ]
+
+    //X-ray divisor
+    const divisor = document.querySelector("#divisor");
+    const slider = document.querySelector("#slider");
+    //explode view
+    const canvas = document.querySelector("#explode-view");
+    const context = canvas.getContext("2d");
+
+    //Srub-Scroll Trigger
+    canvas.width= 1920;
+    canvas.height = 1080;
+    const frameCount = 383;
+    const images = [];
+    const buds = {
+        frame: 0
+    }
+
+    //hamburger menu
+    const menu = document.querySelector("#menu");
+    const hamburger = document.querySelector("#hamburger");
+    const closeButton = document.querySelector("#close");
+    const menuLinks = document.querySelectorAll("#menu nav ul li a")
     //console.log(hotspots);
 
     //functions
 
+    //HOTSPOT ANNOTATION
     function loadInfo(){
         infoBoxes.forEach((infoBox, index)=>{
-           //console.log(index+1);
-           //selected  will be the infoBox on our page, eg. hotspot-1, hotspot-2 .etc.
            let selected = document.querySelector(`#hotspot-${index+1}`);
            console.log(selected);
-        
-           //let's create an h2
+    
            const titleElement = document.createElement('h2');
-           //lets populate an h2
+    
             titleElement.textContent = infoBox.title;
 
-            //lets create a p
+
             const textElement = document.createElement('p');
-            //lets populate a p
+
             textElement.textContent = infoBox.text;
 
-            //lets create an img
+
             const imageElement = document.createElement('img');
             imageElement.src = infoBox.image;
             imageElement.alt = infoBox.alt;
 
             selected.appendChild(imageElement);
-            //lets add the h2 to the selected hotspot
             selected.appendChild(titleElement);
-            //lets add the p to the selected hotspot
             selected.appendChild(textElement);
 
         });
@@ -80,5 +100,59 @@
         hotspot.addEventListener("mouseenter", showInfo);
         hotspot.addEventListener("mouseleave", hideInfo);
     });
+
+    //X-RAY Slider
+    function moveDivisor() {
+        divisor.style.width = `${slider.value}%`;
+    }
+
+    function resetSlider(){
+        slider.value = 50;
+    }
+    slider.addEventListener("input", moveDivisor);
+    window.addEventListener("load", resetSlider);
+
+    for(let i=0; i<frameCount; i++) {
+        const img = new Image();
+        img.src = `images/explode_view/Main_Animation${(i+1).toString().padStart(3, '0')}.webp`;
+        images.push(img);
+    }
+    console.log(images);
+
+    gsap.to(buds, {
+        frame: frameCount-1,
+        snap: "frame",
+        scrollTrigger: {
+            trigger: "#explode-view", 
+            pin: true,
+            scrub: 1,
+            start: "top top",
+            markers: true
+        },
+        onUpdate: render
+        
+    })
+
+    images [0].addEventListener("load", render);
+    function render() {
+    
+        console.log(images[buds.frame]); 
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(images[buds.frame], 0,0);
+
+    }
+
+    //Hamburger Menu
+    function toggleMenu(){
+        menu.classList.toggle("open");
+    }
+
+    closeButton.addEventListener("click", toggleMenu);
+
+    menuLinks.forEach(link=>{
+        link.addEventListener("click", toggleMenu);
+    })
+
+    hamburger.addEventListener("click", toggleMenu);
 
 })();
