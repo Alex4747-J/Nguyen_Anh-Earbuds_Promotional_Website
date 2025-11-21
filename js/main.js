@@ -39,7 +39,7 @@
     const context = canvas.getContext("2d");
 
     //Srub-Scroll Trigger
-    canvas.width= 1920;
+    canvas.width = 1920;
     canvas.height = 1080;
     const frameCount = 383;
     const images = [];
@@ -51,26 +51,22 @@
     const menu = document.querySelector("#menu");
     const hamburger = document.querySelector("#hamburger");
     const closeButton = document.querySelector("#close");
-    const menuLinks = document.querySelectorAll("#menu nav ul li a")
+    const menuLinks = document.querySelectorAll("#menu nav ul li a");
     //console.log(hotspots);
 
     //functions
 
     //HOTSPOT ANNOTATION
-    function loadInfo(){
-        infoBoxes.forEach((infoBox, index)=>{
-           let selected = document.querySelector(`#hotspot-${index+1}`);
-           console.log(selected);
-    
-           const titleElement = document.createElement('h2');
-    
+    function loadInfo() {
+        infoBoxes.forEach((infoBox, index) => {
+            let selected = document.querySelector(`#hotspot-${index + 1}`);
+            console.log(selected);
+
+            const titleElement = document.createElement('h2');
             titleElement.textContent = infoBox.title;
 
-
             const textElement = document.createElement('p');
-
             textElement.textContent = infoBox.text;
-
 
             const imageElement = document.createElement('img');
             imageElement.src = infoBox.image;
@@ -79,7 +75,6 @@
             selected.appendChild(imageElement);
             selected.appendChild(titleElement);
             selected.appendChild(textElement);
-
         });
     }
 
@@ -88,15 +83,15 @@
     function showInfo() {
         console.log(`#${this.slot}`);
         const selected = document.querySelector(`#${this.slot}`);
-        gsap.to(selected, {duration: 1, autoAlpha: 1})
+        gsap.to(selected, { duration: 1, autoAlpha: 1 })
     }
 
     function hideInfo() {
-         const selected = document.querySelector(`#${this.slot}`);
-        gsap.to(selected, {duration: 1, autoAlpha: 0})
+        const selected = document.querySelector(`#${this.slot}`);
+        gsap.to(selected, { duration: 1, autoAlpha: 0 })
     }
 
-    hotspots.forEach(function(hotspot){
+    hotspots.forEach(function (hotspot) {
         hotspot.addEventListener("mouseenter", showInfo);
         hotspot.addEventListener("mouseleave", hideInfo);
     });
@@ -106,53 +101,83 @@
         divisor.style.width = `${slider.value}%`;
     }
 
-    function resetSlider(){
+    function resetSlider() {
         slider.value = 50;
     }
     slider.addEventListener("input", moveDivisor);
     window.addEventListener("load", resetSlider);
 
-    for(let i=0; i<frameCount; i++) {
+    for (let i = 0; i < frameCount; i++) {
         const img = new Image();
-        img.src = `images/explode_view/Main_Animation${(i+1).toString().padStart(3, '0')}.webp`;
+        img.src = `images/explode_view/Main_Animation${(i + 1).toString().padStart(3, '0')}.webp`;
         images.push(img);
     }
     console.log(images);
 
     gsap.to(buds, {
-        frame: frameCount-1,
+        frame: frameCount - 1,
         snap: "frame",
         scrollTrigger: {
-            trigger: "#explode-view", 
+            trigger: "#explode-view",
             pin: true,
             scrub: 1,
             start: "top top",
             markers: true
         },
         onUpdate: render
-        
     })
 
-    images [0].addEventListener("load", render);
+    images[0].addEventListener("load", render);
     function render() {
-    
-        console.log(images[buds.frame]); 
+        console.log(images[buds.frame]);
         context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(images[buds.frame], 0,0);
-
+        context.drawImage(images[buds.frame], 0, 0);
     }
 
-    //Hamburger Menu
-    function toggleMenu(){
-        menu.classList.toggle("open");
+    //Hamburger Menu - Enhanced for mobile-only functionality
+    function toggleMenu() {
+        // Only toggle on mobile screens
+        if (window.innerWidth < 768) {
+            menu.classList.toggle("open");
+            
+            // Prevent body scroll when menu is open
+            if (menu.classList.contains("open")) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
     }
 
-    closeButton.addEventListener("click", toggleMenu);
+    // Check if hamburger and close button exist before adding listeners
+    if (hamburger) {
+        hamburger.addEventListener("click", toggleMenu);
+    }
 
-    menuLinks.forEach(link=>{
-        link.addEventListener("click", toggleMenu);
-    })
+    if (closeButton) {
+        closeButton.addEventListener("click", toggleMenu);
+    }
 
-    hamburger.addEventListener("click", toggleMenu);
+    // Close menu when clicking on a link (mobile only)
+    menuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            if (window.innerWidth < 768) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Handle window resize - ensure correct display
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth >= 768) {
+                // Remove open class and restore body scroll on larger screens
+                menu.classList.remove("open");
+                document.body.style.overflow = '';
+            }
+        }, 250);
+    });
 
 })();
