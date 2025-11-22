@@ -1,0 +1,67 @@
+@use '../abstracts';
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media screen and (min-width: abstracts.$desktop) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+.container-full {
+  max-width: 100%;
+}
+.container-narrow {
+  max-width: abstracts.$tablet;
+}
+.container-wide {
+  max-width: 1536px;
+}
+
+.section {
+  padding: 3rem 0;
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .section {
+    padding: 4rem 0;
+  }
+}
+@media screen and (min-width: abstracts.$desktop) {
+  .section {
+    padding: 6rem 0;
+  }
+}
+.section-hero {
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .section-hero {
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+  }
+}
+@media screen and (min-width: abstracts.$desktop) {
+  .section-hero {
+    padding-top: 12rem;
+    padding-bottom: 8rem;
+  }
+}
+.section-dark {
+  background-color: #18181b;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+

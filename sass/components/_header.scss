@@ -1,46 +1,157 @@
-@use 'abstracts';
+@use '../abstracts';
 
-.head {
-    background-image: url(../images/background.jpeg);
-    box-shadow: abstracts.$shadow;
-    padding: 1rem;
-    z-index: 1000;
-
-    @media screen and (min-width: abstracts.$tablet) {
-        padding: 1rem 1.5rem;
-    }
-
-    @media screen and (min-width: abstracts.$desktop) {
-        padding: 1rem 2rem;
-    }
+.nav {
+  position: fixed;
+  width: 100%;
+  z-index: 20;
+  transition: all 0.3s ease;
+  
+  &_container {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 0 1rem;
+  }
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .nav_container {
+    padding: 0 1.5rem;
+  }
+}
+@media screen and (min-width: abstracts.$desktop) {
+  .nav_container {
+    padding: 0 2rem;
+  }
 }
 
-.logo {
-    img {
-        height: 36px;
-        transition: abstracts.$transition;
+.nav_brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-        @media screen and (min-width: abstracts.$tablet) {
-            height: 36px;
-        }
-
-        @media screen and (min-width: abstracts.$desktop) {
-            height: 100px;
-        }
-
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
+  &-logo {
+  width: 2rem;
+  height: 2rem;
+  }
 }
 
-.main-nav {
+@media screen and (min-width: abstracts.$desktop) {
+  .nav_brand-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+.nav_brand-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  transition: all 0.3s ease;
+
+  &:hover {
+  color: #4ade80;
+  }
+
+  &span {
+  color: #4ade80;
+  }
+}
+
+.nav_menu {
+  display: none;
+
+  &-list {
+  display: flex;
+  gap: 2rem;
+  }
+
+  &-item a {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
     position: relative;
+
+    &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #4ade80;
+    transition: all 0.3s ease;
+    }
+    &a:hover {
+    color: #4ade80;
+    }
+    &a:hover::after {
+    width: 100%;
+    }
+  }
+
+}
+
+@media screen and (min-width: abstracts.$tablet) {
+  .nav_menu {
     display: flex;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
+    gap: 2rem;
+  }
 }
 
+.nav_mobile-toggle {
+  display: block;
+  color: #a1a1aa;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+  color: #ffffff;
+  }
+
+  &svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  }
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .nav_mobile-toggle {
+    display: none;
+  }
+}
+.nav_mobile-menu {
+  display: none;
+  background: #18181b;
+  border-bottom: 1px solid #27272a;
+  &.open {
+  display: block;
+  }
+  
+  &-list {
+  padding: 0.5rem 0.75rem 0.75rem;
+  }
+
+  &-item a {
+  display: block;
+  padding: 0.75rem;
+  color: #d4d4d8;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+    &:hover {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+    }
+  }
+}
+@media screen and (min-width: abstracts.$tablet) {
+  .nav_mobile-menu {
+    display: none !important;
+  }
+}
 
 #hamburger {
     display: block;
