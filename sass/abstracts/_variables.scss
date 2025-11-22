@@ -1,12 +1,65 @@
 // Variables
-$primary-color: #04f100;
-$text-color: #1f2937;
-$text-light: #767575;
-$white: #e2e2e0;
+// Primary Colors
+$primary-color: #4ade80; // Updated to modern green
+$primary-green: #4ade80;
+$primary-green-dark: #22c55e;
+$primary-green-light: #86efac;
+
+// Background Colors
+$dark-bg: #09090b;
+$card-bg: #18181b;
+$card-border: rgba(255, 255, 255, 0.05);
+
+// Text Colors
+$text-color: #f4f4f5; // Updated to lighter color for dark theme
+$text-main: #f4f4f5;
+$text-muted: #a1a1aa;
+$text-light: #d4d4d8;
+
+// Zinc Scale (for gradients)
+$zinc-950: #09090b;
+$zinc-900: #18181b;
+$zinc-800: #27272a;
+$zinc-700: #3f3f46;
+$zinc-600: #52525b;
+$zinc-500: #71717a;
+$zinc-400: #a1a1aa;
+$zinc-300: #d4d4d8;
+$white: #ffffff;
+$black: #000000;
+
+// Z-index
+$z-base: 1;
+$z-dropdown: 10;
+$z-sticky: 20;
+$z-overlay: 30;
+$z-modal: 40;
+$z-popover: 50;
+$z-tooltip: 60;
+$z-notification: 70;
+
+// Border Radius
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-full: 9999px;
+
+// Shadows
 $shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+$shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.5);
+$shadow-glow: 0 0 30px rgba(74, 222, 128, 0.3);
+$shadow-glow-lg: 0 0 60px rgba(74, 222, 128, 0.15);
+
+// Transitions
 $transition: all 0.3s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.5s ease;
 
 // Breakpoints
+$mobile: 480px;
 $tablet: 768px;
 $desktop: 1024px;
 $large: 1440px;
+$xlarge: 1920px;

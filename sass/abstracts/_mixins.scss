@@ -1,4 +1,13 @@
-//Mixins
+// Mixins
+@use 'variables' as *;
+
+// Media Query Mixins
+@mixin mobile {
+  @media screen and (min-width: #{$mobile}) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media screen and (min-width: #{$tablet}) {
     @content;
@@ -17,30 +26,80 @@
   }
 }
 
-//flex box mixins
+@mixin xlarge {
+  @media screen and (min-width: #{$xlarge}) {
+    @content;
+  }
+}
 
+// Flexbox mixins
 @mixin flex-column {
-      display: flex;
-      flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
     
 @mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
     
 @mixin flex-center-column {
-      @include flex-center;
-      flex-direction: column;
+  @include flex-center;
+  flex-direction: column;
 }
     
 @mixin flex-center-vert {
-      display: flex;
-      align-items: center;
+  display: flex;
+  align-items: center;
 }
     
 @mixin flex-center-horiz {
-      display: flex;
-      justify-content: center;
+  display: flex;
+  justify-content: center;
+}
+
+// Glass Effect
+@mixin glass-effect($bg-opacity: 0.8, $blur: 12px) {
+  background: rgba($dark-bg, $bg-opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $card-border;
+}
+
+// Glow Effect
+@mixin glow-text {
+  text-shadow: 0 0 20px rgba($primary-green, 0.5);
+}
+
+@mixin glow-box($color: $primary-green, $size: 30px) {
+  box-shadow: 0 0 $size rgba($color, 0.3);
+}
+
+// Button Base
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: $transition;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+// Card Style
+@mixin card {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: $transition;
 }
