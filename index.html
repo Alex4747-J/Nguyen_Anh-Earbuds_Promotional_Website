@@ -1,203 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Gekk EarBuds</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- tab icon -->
-  <link rel="icon" type="image/x-icon" href="images/earbuds.png">
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/grid.css">
-  <link rel="stylesheet" href="css/main.css">
-  
-  <style>
-    /* Mobile-only hamburger menu styles */
-    #hamburger {
-      display: block;
-      font-size: 32px;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gekk | Future Audio</title>
+    <link rel="icon" type="image/x-icon" href="images/earbuds.png">
     
-    /* Hide hamburger on tablet and desktop */
-    @media screen and (min-width: 768px) {
-      #hamburger {
-        display: none !important;
-      }
-      
-      /* Show regular nav on tablet/desktop */
-      .overlay {
-        display: block !important;
-        position: static !important;
-        background: transparent !important;
-        width: auto !important;
-        height: auto !important;
-      }
-      
-      .overlay.open {
-        display: block !important;
-      }
-      
-      #close {
-        display: none !important;
-      }
-      
-      .overlay nav ul {
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 1.5rem;
-        background: transparent;
-      }
-      
-      .overlay li {
-        margin: 0 !important;
-      }
-      
-      .overlay a {
-        font-size: 0.95rem !important;
-        color: white;
-      }
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     
-    /* Mobile overlay styles */
-    @media screen and (max-width: 767px) {
-      .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        color: white;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
-      
-      .overlay.open {
-        display: flex !important;
-      }
-      
-      #close {
-        display: block;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 32px;
-        background: none;
-        border: none;
-        color: white;
-        cursor: pointer;
-      }
-      
-      .overlay ul {
-        list-style-type: none;
-        text-align: center;
-        padding: 0;
-      }
-      
-      .overlay li {
-        margin: 20px 0;
-      }
-      
-      .overlay a {
-        color: white;
-        font-size: 32px;
-        text-decoration: none;
-      }
-      
-      .overlay a:hover {
-        color: #60c383;
-      }
-    }
-  </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body>
-  <h1 class="hidden">Gekk Overdrive EarBuds</h1>
-  <header class="head">
-    <div class="two-items md-two-third lg-two-third">
-      <div class="logo">
-        <img src="images/earbuds.png" alt="logo">
-      </div>
 
-      <!-- Hamburger button - only visible on mobile -->
-      <button id="hamburger" aria-label="Open menu">&#9776;</button>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="container">
+            <div class="nav_container">
+                <a href="#" class="nav_brand">
+                    <img src="images/earbuds.png" alt="Gekk Logo" class="nav_brand-logo">
+                    <span class="nav_brand-text">gekk<span>.</span></span>
+                </a>
+                
+                <div class="nav_menu">
+                    <ul class="nav_menu-list">
+                        <li class="nav_menu-item"><a href="#model">3D View</a></li>
+                        <li class="nav_menu-item"><a href="#features">Features</a></li>
+                        <li class="nav_menu-item"><a href="#technology">Technology</a></li>
 
-      <!-- Navigation menu -->
-      <div class="main-nav overlay" id="menu">
-        <nav>
-          <!-- Close button - only visible on mobile overlay -->
-          <button id="close" aria-label="Close menu">&times;</button>
-          <h2 class="hidden">Main Navigation</h2>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Discover</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">About</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- <model-viewer> HTML element -->
-    <section id="model-3d" class="fullscreen">
-      <model-viewer src="model/GEKK_Model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
-        <button class="Hotspot" slot="hotspot-1" data-position="-5.49273210640636m 4.569390430358118m -2.585422425832771m" data-normal="0.7262516183909619m -0.34462263619512484m -0.5948057039121527m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-1"></div>
-        </button>
-        <button class="Hotspot" slot="hotspot-2" data-position="-5.926860847273553m 4.02564372012619m -0.47662641875868994m" data-normal="0.16699501929994584m -0.8987714391539698m -0.40536719611990407m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-2"></div>
-        </button>
-        <button class="Hotspot" slot="hotspot-3" data-position="-5.847874129169371m 4.912814524983405m 0.7311898161431281m" data-normal="0.20095185342347588m 0.35566835622685017m 0.9127531829495641m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-3"></div>
-        </button>
-        <button class="Hotspot" slot="hotspot-4" data-position="-2.8070574911244837m 3.1932151199840266m 0.40809117991560306m" data-normal="-0.3024633254349997m 0.09908704614357086m 0.9479966740729334m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-4"></div>
-        </button>
-        <div class="progress-bar hide" slot="progress-bar">
-          <div class="update-bar"></div>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-sm">Pre-order</a>
+                </div>
+                
+                <button class="nav_mobile-toggle" id="mobile-menu-btn" aria-label="Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
         </div>
-      </model-viewer>
+        
+        <!-- Mobile Menu -->
+        <div class="nav_mobile-menu" id="mobile-menu">
+            <ul class="nav_mobile-menu-list">
+                <li class="nav_mobile-menu-item"><a href="#model">3D View</a></li>
+                <li class="nav_mobile-menu-item"><a href="#features">Features</a></li>
+                <li class="nav_mobile-menu-item"><a href="#technology">Technology</a></li>
+                <li class="nav_mobile-menu-item"><a href="#sustainability">Sustainability</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section section-hero">
+        <div class="container">
+            <div class="hero_content">
+                <div class="hero_badge fade-in">Now Available for Pre-order</div>
+                <h1 class="hero_title fade-in">
+                    Hear the <br/>
+                    <span>Difference.</span>
+                </h1>
+                <p class="hero_description fade-in">
+                    Sculpted from groundbreaking materials. Gekk earbuds offer a guilt-free 
+                    listening experience without sacrificing durability or style.
+                </p>
+                <div class="hero_buttons fade-in">
+                    <a href="#" class="btn btn-primary btn-lg">Buy Gekk</a>
+                    <a href="#model" class="btn btn-secondary btn-lg">Explore in 3D</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <div class="grid-con">
-      <div class="col-span-full">
-        <h2>GEKK Buds</h2>
-        <p>Welcome to Gekk, where audio innovation meets environmental stewardship. Sculpted from groundbreaking, sustainable materials, Gekk earbuds offer a guilt-free listening experience without sacrificing durability or style. We have reimagined personal audio to be as kind to the planet as it is pleasing to the ear, setting a new standard for eco-conscious technology.</p>
-
-        <p>Immerse yourself in sound or stay tuned to the world. Our Noise Cancelling Buds provide a comfortable, acoustic seal for pure focus and high-fidelity audio. Conversely, the revolutionary Open Speaker design blends your music naturally with your environment, ensuring you stay safe and present without missing a single beat.</p>
-
-        <p>Communication and control are seamless with Gekk. The Quaker Mic ensures crystal-clear, professional call quality by isolating your voice in any setting. Meanwhile, the Utility Back puts power at your fingertips, letting you customize taps and swipes to manage music and calls effortlessly, adapting the earbuds to your unique lifestyle.</p>
-      </div>
-      <div class="col-span-full">
-        <div id="xray">
-          <div id="divisor"></div>
-          <input type="range" min="0" max="100" value="50" id="slider">
+    <!-- 3D Model Section -->
+    <section id="model" class="model-viewer_section section">
+        <div class="container">
+            <div class="model-viewer_header fade-in">
+                <h2 class="model-viewer_title">Experience <span>Gekk</span> in 3D</h2>
+                <p class="model-viewer_description">
+                    Explore every detail. Hover over the hotspots to discover the innovative features that make Gekk extraordinary.
+                </p>
+            </div>
+            
+            <div class="model-viewer_container fade-in">
+                <model-viewer 
+                    src="model/GEKK_Model.glb" 
+                    ar 
+                    ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    tone-mapping="neutral" 
+                    poster="images/poster.webp" 
+                    shadow-intensity="1">
+                    
+                    <button class="Hotspot" slot="hotspot-1" data-position="-5.49273210640636m 4.569390430358118m -2.585422425832771m" data-normal="0.7262516183909619m -0.34462263619512484m -0.5948057039121527m" data-visibility-attribute="visible">
+                        <div class="HotspotAnnotation" id="hotspot-1"></div>
+                    </button>
+                    <button class="Hotspot" slot="hotspot-2" data-position="-5.926860847273553m 4.02564372012619m -0.47662641875868994m" data-normal="0.16699501929994584m -0.8987714391539698m -0.40536719611990407m" data-visibility-attribute="visible">
+                        <div class="HotspotAnnotation" id="hotspot-2"></div>
+                    </button>
+                    <button class="Hotspot" slot="hotspot-3" data-position="-5.847874129169371m 4.912814524983405m 0.7311898161431281m" data-normal="0.20095185342347588m 0.35566835622685017m 0.9127531829495641m" data-visibility-attribute="visible">
+                        <div class="HotspotAnnotation" id="hotspot-3"></div>
+                    </button>
+                    <button class="Hotspot" slot="hotspot-4" data-position="-2.8070574911244837m 3.1932151199840266m 0.40809117991560306m" data-normal="-0.3024633254349997m 0.09908704614357086m 0.9479966740729334m" data-visibility-attribute="visible">
+                        <div class="HotspotAnnotation" id="hotspot-4"></div>
+                    </button>
+                </model-viewer>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col-span-full">
-      <canvas id="explode-view"></canvas>
-    </div>
-  </main>
+    </section>
 
-  <footer class="footer">
-    <div class="fullscreen">
-      <p>© 2025 Gekk Earbuds. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Features Section -->
+    <section id="features" class="section section-dark">
+        <div class="container">
+            <div class="features_header fade-in">
+                <h2>Engineered for <span class="text-primary">Life.</span></h2>
+                <p>
+                    Designed with purpose. Every feature enhances your connection to sound and the world around you.
+                </p>
+            </div>
+            <!-- Feature 1 -->
+            <div class="card fade-in feature-mobile-only">
+                <div class="card_image">
+                    <img src="images/buds.png" alt="Noise Cancelling Buds">
+                </div>
+                <div class="card_content">
+                    <div class="card_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card_title">Noise Cancelling Buds</h3>
+                    <p class="card_description">
+                        Find your focus with our noise-cancelling buds. Designed for all-day comfort, 
+                        they create a perfect acoustic seal that silences distractions.
+                    </p>
+                </div>
+            </div>
 
-  <!-- link to greensock main library -->
+            <!-- Feature 2 -->
+            <div class="card fade-in feature-mobile-only">
+                <div class="card_image">
+                    <img src="images/mic.png" alt="Quaker Mic">
+                </div>
+                <div class="card_content">
+                    <div class="card_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" x2="12" y1="19" y2="22"></line>
+                        </svg>
+                    </div>
+                    <h3 class="card_title">Quaker Mic</h3>
+                    <p class="card_description">
+                        Crystal-clear, professional-grade call quality. Advanced noise reduction ensures 
+                        your voice is heard perfectly, no matter where you are.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="card fade-in feature-mobile-only">
+                <div class="card_image">
+                    <img src="images/speaker.png" alt="Open Speaker">
+                </div>
+                <div class="card_content">
+                    <div class="card_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 5 6 9H2v6h4l5 4V5z"></path>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card_title">Open Speaker</h3>
+                    <p class="card_description">
+                        Revolutionary audio design that enhances your music while keeping you 
+                        connected to your environment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="card fade-in feature-mobile-only">
+                <div class="card_image">
+                    <img src="images/utility.png" alt="Utility Back">
+                </div>
+                <div class="card_content">
+                    <div class="card_icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+                            <path d="M8.5 8.5v.01"></path>
+                            <path d="M16 15.5v.01"></path>
+                            <path d="M12 12v.01"></path>
+                            <path d="M11 17v.01"></path>
+                            <path d="M7 14v.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card_title">Utility Back</h3>
+                    <p class="card_description">
+                        Complete control at your fingertips. Customize every tap and swipe to 
+                        manage your audio experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology section">
+        <div class="container">
+            <div class="technology_header fade-in">
+                <h2>Inside the <span class="text-primary">Innovation</span></h2>
+                <p class="technology_description">
+                    Discover the cutting-edge technology that powers the Gekk experience.
+                </p>
+            </div>
+
+            <!-- X-Ray View -->
+            <div class="xray_container fade-in">
+                <h3 class="xray_title">X-Ray Vision</h3>
+                <div class="xray_viewer" id="xray">
+                    <div class="xray_divisor" id="divisor"></div>
+                    <input type="range" min="0" max="100" value="50" id="slider" aria-label="X-ray slider">
+                </div>
+                <p class="xray_caption">Drag the slider to reveal the internal components</p>
+            </div>
+
+            <!-- Explode View -->
+            <div class="explode_container fade-in">
+                <h3 class="explode_title">Exploded View</h3>
+                    <canvas id="explode-view"></canvas>
+                <p class="explode_caption">Scroll to see the components separate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer_container">
+            <div class="footer_content">
+                <div class="footer_brand">
+                    <div class="footer_brand-logo">
+                        <img src="images/earbuds.png" alt="Gekk Logo">
+                        <span>gekk<span class="accent">.</span></span>
+                    </div>
+                    <p class="footer_brand-description">
+                        Redefining the audio experience with sustainable innovation and cutting-edge design.
+                    </p>
+                </div>
+                
+                <div class="footer_links">
+                    <div class="footer_column">
+                        <h4 class="footer_column-title">Product</h4>
+                        <ul class="footer_column-list">
+                            <li><a href="#features" class="footer_column-link">Features</a></li>
+                            <li><a href="#technology" class="footer_column-link">Technology</a></li>
+                            <li><a href="#sustainability" class="footer_column-link">Sustainability</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer_column">
+                        <h4 class="footer_column-title">Support</h4>
+                        <ul class="footer_column-list">
+                            <li><a href="#" class="footer_column-link">Help Center</a></li>
+                            <li><a href="#" class="footer_column-link">Returns</a></li>
+                            <li><a href="#" class="footer_column-link">Warranty</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer_social">
+                        <h4 class="footer_social-title">Connect</h4>
+                        <div class="footer_social-links">
+                            <a href="#" class="footer_social-link" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="#" class="footer_social-link" aria-label="Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" class="footer_social-link" aria-label="YouTube">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
+                                    <path d="m10 15 5-3-5-3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer_bottom">
+                <p class="footer_bottom-copyright">&copy; 2025 Gekk Earbuds. All rights reserved.</p>
+                <div class="footer_bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- link to greensock main library -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <!-- Scroll trigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js"></script>
@@ -207,5 +320,4 @@
   <!-- Our JS folder last -->
   <script src="js/main.js"></script>
 </body>
-
 </html>
