@@ -1,62 +1,74 @@
 (() => {
-    // console.log("JS file is connected")
+    // ------------------------------------------------------------------------
+    // 1. VARIABLES
+    // ------------------------------------------------------------------------
 
-    //Hotspot Annotation
+    // Mobile Menu Elements
+    const mobileMenuBtn = document.querySelector("#mobile-menu-btn");
+    const mobileMenu = document.querySelector("#mobile-menu");
+    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+    // Hotspot & 3D Model Elements
     const hotspots = document.querySelectorAll(".Hotspot");
 
     const infoBoxes = [
         {
             title: "Noise Cancelling Buds",
-            text: "Find your focus with our noise-cancelling buds. Designed for all-day comfort, they create a perfect acoustic seal that silences distractions, leaving only you and your high-fidelity, immersive audio.",
+            text: "Find your focus with our noise-cancelling buds. Designed for all-day comfort.",
             image: "images/buds.png",
-            alt: "Noise Cancelling Buds Image"
+            alt: "Noise Cancelling Buds"
         },
         {
             title: "Quaker Mic",
-            text: "With our precision-engineered Quaker Mic, your voice is the only thing they'll hear. Enjoy crystal-clear, professional-grade call quality, no matter where you are.",
+            text: "Crystal-clear, professional-grade call quality, no matter where you are.",
             image: "images/mic.png",
-            alt: "Quaker Mic Image"
+            alt: "Quaker Mic"
         },
         {
             title: "Open Speaker",
-            text: "Our Open Speaker design provides a revolutionary audio experience. It enhances your music while naturally blending in the world around you, ensuring you stay present and safe.",
+            text: "Revolutionary audio that keeps you connected to your environment.",
             image: "images/speaker.png",
-            alt: "Open Speaker Image"
+            alt: "Open Speaker"
         },
         {
             title: "Utility Back",
-            text: "The intuitive Utility Back puts complete control at your fingertips. Customize every tap and swipe to effortlessly manage your music, answer calls, or activate your voice assistant.",
+            text: "Complete control at your fingertips with customizable gestures.",
             image: "images/utility.png",
-            alt: "Utility Back Image"
+            alt: "Utility Back"
         }
-    ]
+    ];
 
-    //X-ray divisor
+    // X-Ray Elements
     const divisor = document.querySelector("#divisor");
     const slider = document.querySelector("#slider");
-    //explode view
-    const canvas = document.querySelector("#explode-view");
-    const context = canvas.getContext("2d");
 
-    //Srub-Scroll Trigger
-    canvas.width = 1920;
-    canvas.height = 1080;
+    // Explode View Elements
+    const canvas = document.querySelector("#explode-view");
+    const context = canvas ? canvas.getContext("2d") : null;
     const frameCount = 383;
     const images = [];
-    const buds = {
-        frame: 0
+    const buds = { frame: 0 };
+    canvas.width = 1920;
+    canvas.height = 1080;
+
+    // Fade Animation Elements
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+
+    // ------------------------------------------------------------------------
+    // 2. FUNCTIONS
+    // ------------------------------------------------------------------------
+
+    // --- Mobile Menu Functions ---
+    function toggleMobileMenu() {
+        mobileMenu.classList.toggle('open');
     }
 
-    //hamburger menu
-    const menu = document.querySelector("#menu");
-    const hamburger = document.querySelector("#hamburger");
-    const closeButton = document.querySelector("#close");
-    const menuLinks = document.querySelectorAll("#menu nav ul li a");
-    //console.log(hotspots);
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+    }
 
-    //functions
-
-    //HOTSPOT ANNOTATION
+    // --- Hotspot Functions ---
     function loadInfo() {
         infoBoxes.forEach((infoBox, index) => {
             let selected = document.querySelector(`#hotspot-${index + 1}`);
@@ -91,81 +103,91 @@
         gsap.to(selected, { duration: 1, autoAlpha: 0 })
     }
 
-    hotspots.forEach(function (hotspot) {
-        hotspot.addEventListener("mouseenter", showInfo);
-        hotspot.addEventListener("mouseleave", hideInfo);
-    });
-
-    //X-RAY Slider
+    // --- X-Ray Functions ---
     function moveDivisor() {
         divisor.style.width = `${slider.value}%`;
     }
 
     function resetSlider() {
         slider.value = 50;
+        moveDivisor();
     }
-    slider.addEventListener("input", moveDivisor);
-    window.addEventListener("load", resetSlider);
 
+    // --- Explode View Functions ---
+    function render() {
+        if (context && images[buds.frame]) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(images[buds.frame], 0, 0);
+        }
+    }
+
+
+    // ------------------------------------------------------------------------
+    // 3. EXECUTION / EVENT LISTENERS
+    // ------------------------------------------------------------------------
+
+    // 1. Mobile Menu Logic
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+    }
+
+    // 2. Hotspots Logic
+    // Attach interaction listeners
+    hotspots.forEach(hotspot => {
+        hotspot.addEventListener("mouseenter", showInfo);
+        hotspot.addEventListener("mouseleave", hideInfo);
+    });
+
+    // 3. X-Ray Logic
+    if (divisor && slider) {
+        slider.addEventListener("input", moveDivisor);
+        window.addEventListener("load", resetSlider);
+    }
+
+    // 4. Explode View Logic
+    // Preload Images
     for (let i = 0; i < frameCount; i++) {
         const img = new Image();
         img.src = `images/explode_view/Main_Animation${(i + 1).toString().padStart(3, '0')}.webp`;
         images.push(img);
     }
-    console.log(images);
 
-    gsap.to(buds, {
-        frame: frameCount - 1,
-        snap: "frame",
-        scrollTrigger: {
-            trigger: "#explode-view",
-            pin: true,
-            scrub: 1,
-            start: "top top",
-            markers: true
-        },
-        onUpdate: render
-    })
+    // Initialize ScrollTrigger
+    if (canvas) {
+        gsap.to(buds, {
+            frame: frameCount - 1,
+            snap: "frame",
+            scrollTrigger: {
+                trigger: "#explode-view",
+                pin: true,
+                scrub: 1,
+                start: "top top",
+            },
+            onUpdate: render
+        });
 
-    images[0].addEventListener("load", render);
-    function render() {
-        console.log(images[buds.frame]);
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(images[buds.frame], 0, 0);
-    }
-
-    //Hamburger Menu - Enhanced for mobile-only functionality
-    function toggleMenu() {
-        // Only toggle on mobile screens
-        if (window.innerWidth < 768) {
-            menu.classList.toggle("open");
-            
-            // Prevent body scroll when menu is open
-            if (menu.classList.contains("open")) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+        // Initial render
+        if (images.length > 0) {
+            images[0].addEventListener("load", render);
         }
     }
 
-    // Check if hamburger and close button exist before adding listeners
-    if (hamburger) {
-        hamburger.addEventListener("click", toggleMenu);
-    }
-
-    if (closeButton) {
-        closeButton.addEventListener("click", toggleMenu);
-    }
-
-    // Close menu when clicking on a link (mobile only)
-    menuLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            if (window.innerWidth < 768) {
-                toggleMenu();
+    // 5. Fade-in Animation Logic
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
             }
         });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
+    fadeElements.forEach((el) => fadeObserver.observe(el));
 
 })();
