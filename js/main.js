@@ -167,17 +167,5 @@
         });
     });
 
-    // Handle window resize - ensure correct display
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            if (window.innerWidth >= 768) {
-                // Remove open class and restore body scroll on larger screens
-                menu.classList.remove("open");
-                document.body.style.overflow = '';
-            }
-        }, 250);
-    });
 
 })();
