@@ -1,12 +1,16 @@
 @use '../abstracts' as *;
 
 .footer {
-  background: $zinc-950;
+  // background: $zinc-950;
+  background-image: url(../images/background_footer.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  max-height: 80%;
   border-top: 1px solid $zinc-900;
   padding: 5rem 0 2.5rem;
   
   &_container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
     
@@ -89,6 +93,9 @@
     &-list {
       display: flex;
       flex-direction: column;
+      background-color: $zinc-900;
+      padding: 1.5rem;
+      border-radius: $radius-md;
       gap: 1rem;
     }
     
